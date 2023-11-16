@@ -22,13 +22,6 @@ spec:
           image: {{ .Values.fastapi_image.image }}:{{ .Values.fastapi_image.tag }}
           ports:
             - containerPort: 5000
-          resources:
-            limits:
-              cpu: "1"
-              memory: "512Mi"
-            requests:
-              cpu: "500m"
-              memory: "256Mi"
 
 ---
 

@@ -7,7 +7,7 @@ namespace: helm
 replicaCount: 3
 
 fastapi_image:
-  image: p0l1nas/fastapi:latest
+  image: p0l1na/fastapi:0.0.1
   tag: latest
   port: 5000
 

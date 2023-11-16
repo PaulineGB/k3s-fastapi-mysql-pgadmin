@@ -19,16 +19,9 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: p0l1nas/fastapi:latest
+          image: p0l1na/fastapi:0.0.1
           ports:
             - containerPort: 5000
-          resources:
-            limits:
-              cpu: "1"
-              memory: "512Mi"
-            requests:
-              cpu: "500m"
-              memory: "256Mi"
 
 ---
 
