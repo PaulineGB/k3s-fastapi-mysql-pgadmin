@@ -1,0 +1,37 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: helm
+
+replicaCount: 3
+
+fastapi_image:
+  image: p0l1nas/fastapi:latest
+  tag: latest
+  port: 5000
+
+fastapi_service_clusterip:
+  port: 80
+
+fastapi_ingress:
+  port: 80
+  host: "k3s.pgb.cloudns.ph"
+
+fastapi_hpa:
+  minReplicas: 3
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
+
+db:
+  name: postgres
+  image: postgres:12.0-alpine
+  port: 5432
+
+pgadmin:
+  name: pgadmin
+  image: dpage/pgadmin4
+  email: YWRtaW5AYWRtaW4uY29t
+  password: cm9vdA==
+  port: 80
+  nodeport: 30080

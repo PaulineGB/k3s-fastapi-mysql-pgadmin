@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-standard-config
+  namespace: standard
+type: Opaque
+data:
+  POSTGRES_USER: YWRtaW4=
+  POSTGRES_PASSWORD: cGFzc3dvcmQ=
+  POSTGRES_DB: c3RvcmVkYg==
+  POSTGRES_HOST_AUTH_METHOD: dHJ1c3Q=
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: db
+  serviceName: db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-db-pvc
+      containers:
+      - name: db
+        image: postgres:12.0-alpine
+        ports:
+        - containerPort: 5432
+          name: db
+        envFrom:
+        - secretRef:
+            name: postgres-standard-config
+        volumeMounts:
+        - mountPath: "/var/lib/postgresql/data/"
+          name: postgres-storage
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: standard
+spec:
+  selector:
+    app: db
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5432
+    targetPort: 5432
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-db-pv
+  namespace: standard
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/standard"
+  storageClassName: standard
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-db-pvc
+  namespace: standard
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 128Mi
