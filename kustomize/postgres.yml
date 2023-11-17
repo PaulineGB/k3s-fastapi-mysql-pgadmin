@@ -3,7 +3,6 @@ kind: Secret
 metadata:
   name: postgres-standard-config
   namespace: standard
-type: Opaque
 data:
   POSTGRES_USER: YWRtaW4=
   POSTGRES_PASSWORD: cGFzc3dvcmQ=

@@ -47,5 +47,5 @@ spec:
   - name: http
     protocol: TCP
     port: {{ .Values.pgadmin.port }}
-    targetPort: {{ .Values.pgadmin.port }}
+    targetPort: {{ .Values.pgadmin.targetPort }}
     nodePort: {{ .Values.pgadmin.nodePort }}

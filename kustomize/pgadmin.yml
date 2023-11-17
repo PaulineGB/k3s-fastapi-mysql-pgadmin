@@ -3,7 +3,6 @@ kind: Secret
 metadata:
   name: pgadmin-secret
   namespace: standard
-type: Opaque
 data:
   PGADMIN_DEFAULT_EMAIL: YWRtaW5AYWRtaW4uY29t
   PGADMIN_DEFAULT_PASSWORD: cm9vdA==
@@ -47,5 +46,5 @@ spec:
   - name: http
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
     nodePort: 30080
