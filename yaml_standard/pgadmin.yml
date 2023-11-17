@@ -20,10 +20,6 @@ spec:
   containers:
   - name: pgadmin
     image: dpage/pgadmin4
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
     ports:
       - containerPort: 80
         name: pgadmin
