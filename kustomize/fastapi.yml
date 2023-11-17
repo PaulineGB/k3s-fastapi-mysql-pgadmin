@@ -53,7 +53,7 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 80
+      port: 5000
       targetPort: 5000
 
 ---
@@ -81,4 +81,4 @@ spec:
               service:
                 name: fastapi-service
                 port:
-                  number: 80
+                  number: 5000
