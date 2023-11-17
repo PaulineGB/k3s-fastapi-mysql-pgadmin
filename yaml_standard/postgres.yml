@@ -16,6 +16,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: db
+  namespace: standard
 spec:
   selector:
     matchLabels:
@@ -52,6 +53,7 @@ metadata:
   name: db
   namespace: standard
 spec:
+  type: ClusterIP
   selector:
     app: db
   ports:
@@ -59,7 +61,6 @@ spec:
     protocol: TCP
     port: 5432
     targetPort: 5432
-  type: ClusterIP
 
 ---
 
