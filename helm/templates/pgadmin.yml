@@ -21,10 +21,6 @@ spec:
   containers:
   - name: {{ .Values.pgadmin.name }}
     image: dpage/pgadmin4
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
     ports:
       - containerPort: 80
         name: {{ .Values.pgadmin.name }}

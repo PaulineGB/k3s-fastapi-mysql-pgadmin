@@ -33,6 +33,6 @@ pgadmin:
   image: dpage/pgadmin4
   email: YWRtaW5AYWRtaW4uY29t
   password: cm9vdA==
-  port: 8080
+  port: 80
   targetPort: 80
   nodeport: 30080
