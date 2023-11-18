@@ -3,7 +3,6 @@ kind: Secret
 metadata:
   name: {{ .Values.db.name }}-{{ .Values.namespace }}-config
   namespace: {{ .Values.namespace }}
-type: Opaque
 data:
   POSTGRES_USER: YWRtaW4=
   POSTGRES_PASSWORD: cGFzc3dvcmQ=
