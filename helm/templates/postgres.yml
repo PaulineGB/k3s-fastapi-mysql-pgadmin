@@ -5,8 +5,10 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   password: cGFzc3dvcmQ=
+  user: YWRtaW4K=
 
 ---
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -41,6 +43,7 @@ spec:
               name: {{ .Values.db.name }}-storage
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -57,6 +60,7 @@ spec:
   type: ClusterIP
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -72,6 +76,7 @@ spec:
   storageClassName: {{ .Values.namespace }}
 
 ---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
