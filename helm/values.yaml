@@ -7,8 +7,7 @@ namespace: helm
 replicaCount: 3
 
 fastapi_image:
-  image: p0l1na/fastapi
-  tag: 0.0.1
+  image: p0l1na/fastapi:0.0.1
   port: 5000
 
 fastapi_service_clusterip:

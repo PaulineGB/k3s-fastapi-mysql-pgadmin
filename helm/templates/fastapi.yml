@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.fastapi_image.image }}:{{ .Values.fastapi_image.tag }}
+          image: {{ .Values.fastapi_image.image }}
           ports:
             - containerPort: 5000
 

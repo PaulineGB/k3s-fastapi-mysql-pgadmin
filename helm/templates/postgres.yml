@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ .Values.db.name }}-{{ .Values.namespace }}-config
+  name: {{ .Values.db.name }}-helm-config
   namespace: {{ .Values.namespace }}
 data:
   POSTGRES_USER: YWRtaW4=
@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: {{ .Values.db.name }}-storage
           persistentVolumeClaim:
-            claimName: {{ .Values.db.name }}-db-pvc
+            claimName: {{ .Values.db.name }}-helm-db-pvc
       containers:
         - name: db
           image: {{ .Values.db.image }}
@@ -37,7 +37,7 @@ spec:
               name: db
           envFrom:
             - secretRef:
-                name: {{ .Values.db.name }}-{{ .Values.namespace }}-config
+                name: {{ .Values.db.name }}-helm-config
           volumeMounts:
             - mountPath: "/var/lib/postgresql/data/"
               name: {{ .Values.db.name }}-storage
