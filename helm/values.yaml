@@ -27,7 +27,7 @@ db:
   image: postgres:12.0-alpine
   port: 5432
   user: YWRtaW4K
-  password: cGFzc3dvcmQK
+  password: cGFzc3dvcmQ=
   db: c3RvcmVkYgo=
   host_method: dHJ1c3QK
 
