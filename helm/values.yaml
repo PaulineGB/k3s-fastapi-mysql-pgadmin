@@ -26,10 +26,6 @@ db:
   name: postgres
   image: postgres:12.0-alpine
   port: 5432
-  user: YWRtaW4K=
-  password: cGFzc3dvcmQ=
-  db: c3RvcmVkYg==
-  host_method: dHJ1c3Q=
 
 pgadmin:
   name: pgadmin

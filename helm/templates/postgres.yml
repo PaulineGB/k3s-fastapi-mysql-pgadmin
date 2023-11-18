@@ -3,6 +3,7 @@ kind: Secret
 metadata:
   name: {{ .Values.db.name }}-helm-config
   namespace: {{ .Values.namespace }}
+type: Opaque
 data:
   POSTGRES_DB: c3RvcmVkYg==
   POSTGRES_HOST_AUTH_METHOD: dHJ1c3Q=
