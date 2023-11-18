@@ -63,7 +63,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ .Values.db.name }}-db-pv
+  name: {{ .Values.db.name }}-helm-db-pv
   namespace: {{ .Values.namespace }}
 spec:
   capacity:
@@ -78,7 +78,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.db.name }}-db-pvc
+  name: {{ .Values.db.name }}-helm-db-pvc
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:
