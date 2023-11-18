@@ -4,7 +4,10 @@ metadata:
   name: {{ .Values.db.name }}-helm-config
   namespace: {{ .Values.namespace }}
 data:
-  password: cGFzc3dvcmQ=
+  POSTGRES_DB: c3RvcmVkYg==
+  POSTGRES_HOST_AUTH_METHOD: dHJ1c3Q=
+  POSTGRES_PASSWORD: cGFzc3dvcmQ=
+  POSTGRES_USER: YWRtaW4=
 
 ---
 
@@ -25,30 +28,21 @@ spec:
         app: db
     spec:
       volumes:
-        - name: {{ .Values.db.name }}-storage
+        - name: {{ .Values.db.name }}-helm-storage
           persistentVolumeClaim:
             claimName: {{ .Values.db.name }}-helm-db-pvc
       containers:
         - name: db
           image: {{ .Values.db.image }}
           ports:
-            - containerPort: {{ .Values.db.port }}
-              name: db
-          env:
-            - name: POSTGRES_DB
-              value: storedb
-            - name: POSTGRES_HOST_AUTH_METHOD
-              value: trust
-            - name: POSTGRES_USER
-              value: admin
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.db.name }}-helm-config
-                  key: password
+          - containerPort: {{ .Values.db.port }}
+            name: db
+          envFrom:
+          - secretRef:
+              name: {{ .Values.db.name }}-helm-config
           volumeMounts:
-            - mountPath: "/var/lib/postgresql/data/"
-              name: {{ .Values.db.name }}-storage
+          - mountPath: "/var/lib/postgresql/data/"
+            name: {{ .Values.db.name }}-helm-storage
 
 ---
 
@@ -61,10 +55,10 @@ spec:
   selector:
     app: db
   ports:
-    - name: http
-      protocol: TCP
-      port: {{ .Values.db.port }}
-      targetPort: {{ .Values.db.port }}
+  - name: http
+    protocol: TCP
+    port: {{ .Values.db.port }}
+    targetPort: {{ .Values.db.port }}
   type: ClusterIP
 
 ---
@@ -80,7 +74,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data/{{ .Values.namespace }}"
+    path: "/mnt/data/helm"
   storageClassName: {{ .Values.namespace }}
 
 ---
