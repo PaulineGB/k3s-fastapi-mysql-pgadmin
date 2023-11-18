@@ -4,8 +4,10 @@ metadata:
   name: {{ .Values.db.name }}-helm-config
   namespace: {{ .Values.namespace }}
 data:
-  password: cGFzc3dvcmQ=
-  user: YWRtaW4K=
+  POSTGRES_DB: c3RvcmVkYg==
+  POSTGRES_HOST_AUTH_METHOD: dHJ1c3Q=
+  POSTGRES_PASSWORD: cGFzc3dvcmQ=
+  POSTGRES_USER: YWRtaW4=
 
 ---
 
