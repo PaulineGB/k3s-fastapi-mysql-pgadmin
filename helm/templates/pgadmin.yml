@@ -4,7 +4,8 @@ metadata:
   name: {{ .Values.pgadmin.name }}-secret
   namespace: {{ .Values.namespace }}
 data:
-  password: cm9vdA==
+  PGADMIN_DEFAULT_EMAIL: YWRtaW5AYWRtaW4uY29t
+  PGADMIN_DEFAULT_PASSWORD: cm9vdA==
 
 ---
 
