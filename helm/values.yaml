@@ -32,4 +32,4 @@ pgadmin:
   image: dpage/pgadmin4
   port: 80
   targetPort: 80
-  nodeport: 30080
+  nodePort: 30080
