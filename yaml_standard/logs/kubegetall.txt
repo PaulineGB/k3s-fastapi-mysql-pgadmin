@@ -1,3 +1,4 @@
+# kubectl -n standard get all
 NAME                                      READY   STATUS    RESTARTS        AGE
 pod/db-0                                  1/1     Running   0               9m54s
 pod/pgadmin                               1/1     Running   0               9m44s
@@ -21,3 +22,11 @@ statefulset.apps/db   1/1     9m54s
 
 NAME                                              REFERENCE                       TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
 horizontalpodautoscaler.autoscaling/fastapi-hpa   Deployment/fastapi-deployment   <unknown>/70%   3         6         3          9m25s
+
+# kubectl -n standard get certificate
+NAME                  READY   SECRET                AGE
+fastapi-certificate   True   fastapi-certificate   3d7h
+
+# kubectl -n standard get ingress
+NAME                        CLASS     HOSTS                ADDRESS         PORTS     AGE
+fastapi-ingress             traefik   k3s.pgb.cloudns.ph   172.30.243.47   80, 443   3d23h
