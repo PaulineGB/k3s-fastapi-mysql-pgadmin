@@ -1,0 +1,17 @@
+INFO[0000] Saving etcd snapshot to /home/ubuntu/backup/etcd_backup/on-demand-ip-172-31-42-23-1700412368
+{"level":"info","ts":"2023-11-19T16:46:07.567679Z","caller":"snapshot/v3_snapshot.go:65","msg":"created temporary db file","path":"/home/ubuntu/backup/etcd_backup/on-demand-ip-172-31-42-23-1700412368.part"}
+{"level":"info","ts":"2023-11-19T16:46:07.571098Z","logger":"client","caller":"v3@v3.5.9-k3s1/maintenance.go:212","msg":"opened snapshot stream; downloading"}
+{"level":"info","ts":"2023-11-19T16:46:07.57181Z","caller":"snapshot/v3_snapshot.go:73","msg":"fetching snapshot","endpoint":"https://127.0.0.1:2379"}
+{"level":"info","ts":"2023-11-19T16:46:07.649152Z","logger":"client","caller":"v3@v3.5.9-k3s1/maintenance.go:220","msg":"completed snapshot read; closing"}
+{"level":"info","ts":"2023-11-19T16:46:07.660947Z","caller":"snapshot/v3_snapshot.go:88","msg":"fetched snapshot","endpoint":"https://127.0.0.1:2379","size":"5.0 MB","took":"now"}
+{"level":"info","ts":"2023-11-19T16:46:07.661052Z","caller":"snapshot/v3_snapshot.go:97","msg":"saved","path":"/home/ubuntu/backup/etcd_backup/on-demand-ip-172-31-42-23-1700412368"}
+INFO[0000] Reconciling ETCDSnapshotFile resources
+INFO[0000] Deleting ETCDSnapshotFile for on-demand-ip-172-31-42-23-1700411739
+INFO[0000] Reconciliation of ETCDSnapshotFile resources complete
+
+ETCD backup has been done successfully. Backup file:
+/home/ubuntu/backup/etcd_backup
+
+Name                                 Location                                                                    Size    Created
+on-demand-ip-172-31-42-23-1700412368 file:///home/ubuntu/backup/etcd_backup/on-demand-ip-172-31-42-23-1700412368 5034016 2023-11-19T16:46:08Z
+on-demand-ip-172-31-42-23-1700412417 file:///home/ubuntu/backup/etcd_backup/on-demand-ip-172-31-42-23-1700412417 5034016 2023-11-19T16:46:57Z
