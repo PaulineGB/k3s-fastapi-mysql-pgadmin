@@ -1,0 +1,43 @@
+# kubectl apply -k kustomize
+secret/pgadmin-secret created
+secret/postgres-standard-config created
+service/db created
+service/fastapi-service created
+service/pgadmin-service created
+persistentvolume/postgres-db-pv unchanged
+persistentvolumeclaim/postgres-db-pvc created
+deployment.apps/fastapi-deployment created
+statefulset.apps/db created
+horizontalpodautoscaler.autoscaling/fastapi-hpa created
+ingress.networking.k8s.io/fastapi-ingress created
+pod/pgadmin created
+
+
+# kubectl -n kustomize get all
+NAME                                      READY   STATUS    RESTARTS      AGE
+pod/pgadmin                               1/1     Running   0             82s
+pod/db-0                                  1/1     Running   0             82s
+pod/fastapi-deployment-5c758d44d9-vgdnp   1/1     Running   2 (80s ago)   82s
+pod/fastapi-deployment-5c758d44d9-w4ql7   1/1     Running   2 (80s ago)   82s
+pod/fastapi-deployment-5c758d44d9-48sf4   1/1     Running   2 (80s ago)   82s
+
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/db                ClusterIP   10.43.170.22    <none>        5432/TCP       82s
+service/fastapi-service   ClusterIP   10.43.228.241   <none>        5000/TCP       82s
+service/pgadmin-service   NodePort    10.43.69.241    <none>        80:30084/TCP   82s
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/fastapi-deployment   3/3     3            3           82s
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/fastapi-deployment-5c758d44d9   3         3         3       82s
+
+NAME                  READY   AGE
+statefulset.apps/db   1/1     82s
+
+NAME                                              REFERENCE                       TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/fastapi-hpa   Deployment/fastapi-deployment   <unknown>/70%   3         6         3          82s
+
+# kubectl -n kustomize get ingress
+NAME              CLASS     HOSTS                ADDRESS         PORTS     AGE
+fastapi-ingress   traefik   k3s.pgb.cloudns.ph   172.30.243.47   80, 443   2m52s
