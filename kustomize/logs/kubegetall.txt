@@ -12,32 +12,33 @@ horizontalpodautoscaler.autoscaling/fastapi-hpa created
 ingress.networking.k8s.io/fastapi-ingress created
 pod/pgadmin created
 
-
-# kubectl -n kustomize get all
-NAME                                      READY   STATUS    RESTARTS      AGE
-pod/pgadmin                               1/1     Running   0             82s
-pod/db-0                                  1/1     Running   0             82s
-pod/fastapi-deployment-5c758d44d9-vgdnp   1/1     Running   2 (80s ago)   82s
-pod/fastapi-deployment-5c758d44d9-w4ql7   1/1     Running   2 (80s ago)   82s
-pod/fastapi-deployment-5c758d44d9-48sf4   1/1     Running   2 (80s ago)   82s
-
-NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-service/db                ClusterIP   10.43.170.22    <none>        5432/TCP       82s
-service/fastapi-service   ClusterIP   10.43.228.241   <none>        5000/TCP       82s
-service/pgadmin-service   NodePort    10.43.69.241    <none>        80:30084/TCP   82s
-
-NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/fastapi-deployment   3/3     3            3           82s
-
-NAME                                            DESIRED   CURRENT   READY   AGE
-replicaset.apps/fastapi-deployment-5c758d44d9   3         3         3       82s
-
-NAME                  READY   AGE
-statefulset.apps/db   1/1     82s
-
-NAME                                              REFERENCE                       TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
-horizontalpodautoscaler.autoscaling/fastapi-hpa   Deployment/fastapi-deployment   <unknown>/70%   3         6         3          82s
-
 # kubectl -n kustomize get ingress
 NAME              CLASS     HOSTS                ADDRESS         PORTS     AGE
 fastapi-ingress   traefik   k3s.pgb.cloudns.ph   172.30.243.47   80, 443   2m52s
+
+# kubectl -n kustomize get all
+NAME                                      READY   STATUS    RESTARTS      AGE
+pod/db-0                                  1/1     Running   0             33s
+pod/fastapi-deployment-5c758d44d9-7wdbp   1/1     Running   0             33s
+pod/fastapi-deployment-5c758d44d9-snllx   1/1     Running   0             33s
+pod/fastapi-deployment-5c758d44d9-ztz6c   1/1     Running   1 (28s ago)   33s
+pod/pgadmin-8494d946d4-9hk9t              1/1     Running   0             33s
+
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/db                ClusterIP   10.43.239.175   <none>        5432/TCP       33s
+service/fastapi-service   ClusterIP   10.43.111.48    <none>        5000/TCP       33s
+service/pgadmin-service   NodePort    10.43.120.205   <none>        80:30084/TCP   33s
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/fastapi-deployment   3/3     3            3           33s
+deployment.apps/pgadmin              1/1     1            1           33s
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/fastapi-deployment-5c758d44d9   3         3         3       33s
+replicaset.apps/pgadmin-8494d946d4              1         1         1       33s
+
+NAME                  READY   AGE
+statefulset.apps/db   1/1     33s
+
+NAME                                              REFERENCE                       TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/fastapi-hpa   Deployment/fastapi-deployment   <unknown>/70%   3         6         3          33s
