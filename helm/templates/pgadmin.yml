@@ -9,23 +9,37 @@ data:
 
 ---
 
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ .Values.pgadmin.name }}
   namespace: {{ .Values.namespace }}
   labels:
     name: {{ .Values.pgadmin.name }}
 spec:
-  containers:
-  - name: {{ .Values.pgadmin.name }}
-    image: dpage/pgadmin4
-    ports:
-      - containerPort: 80
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      name: {{ .Values.pgadmin.name }}
+  template:
+    metadata:
+      labels:
         name: {{ .Values.pgadmin.name }}
-    envFrom:
-    - secretRef:
-        name: {{ .Values.pgadmin.name }}-secret
+    spec:
+      containers:
+      - name: {{ .Values.pgadmin.name }}
+        image: dpage/pgadmin4
+        ports:
+          - containerPort: 80
+            name: {{ .Values.pgadmin.name }}
+        envFrom:
+        - secretRef:
+            name: {{ .Values.pgadmin.name }}-secret
 
 ---
 
